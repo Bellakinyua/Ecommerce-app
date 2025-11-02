@@ -126,9 +126,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Your app-level static folder
+
+
+
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"  # This is where collectstatic will copy files to
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
