@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="checkout-container" style="max-width: 600px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <h2 style="text-align:center; margin-bottom: 20px;">Checkout</h2>
+
+    {% if messages %}
+        <ul class="messages" style="color: green;">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 15px;">
+            <label for="name" style="display:block; font-weight:bold;">Full Name</label>
+            <input type="text" name="name" id="name" required placeholder="John Doe" 
+                   style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="email" style="display:block; font-weight:bold;">Email Address</label>
+            <input type="email" name="email" id="email" required placeholder="johndoe@example.com"
+                   style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="address" style="display:block; font-weight:bold;">Shipping Address</label>
+            <textarea name="address" id="address" rows="3" required placeholder="Enter your address..."
+                      style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;"></textarea>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label for="payment" style="display:block; font-weight:bold;">Payment Method</label>
+            <select name="payment" id="payment" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:5px;">
+                <option value="">-- Select Payment Method --</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="mpesa">M-Pesa</option>
+                <option value="paypal">PayPal</option>
+            </select>
+        </div>
+
+        <div style="text-align:center;">
+            <button type="submit" style="background:#007bff; color:#fff; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">
+                Complete Purchase
+            </button>
+        </div>
+    </form>
+
+    <p style="text-align:center; margin-top:20px;">
+        <a href="{% url 'product_list' %}" style="color:#007bff;">← Continue Shopping</a>
+    </p>
+</div>
+{% endblock %}

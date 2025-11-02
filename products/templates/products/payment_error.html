@@ -1,0 +1,12 @@
+
+{% extends 'products/base.html' %}
+
+{% block content %}
+<div style="text-align: center; margin-top: 50px;">
+  <h2 style="color: #e74c3c;">Payment Failed !</h2>
+  <p>Sorry, something went wrong while processing your payment.</p>
+  <p>Please try again later or contact support if the issue continues.</p>
+
+  <a href="{% url 'view_cart' %}" style="text-decoration:none; background:#3498db; color:white; padding:10px 20px; border-radius:5px;">Return to Cart</a>
+</div>
+{% endblock %}

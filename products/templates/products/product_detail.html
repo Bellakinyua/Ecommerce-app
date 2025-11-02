@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} | Bella Electronics</title>
+    <link rel="stylesheet" href="{% static 'products/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'products/css/home.css' %}">
+    <style>
+      
+</head>
+<body>
+
+<!-- NAVIGATION BAR -->
+<header class="site-header">
+    <nav class="navbar">
+        <a href="{% url 'home' %}" class="brand">Bella Electronics</a>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'product_list' %}">Shop</a></li>
+            <li><a href="{% url 'view_cart' %}">Cart</a></li>
+            <li><a href="{% url 'order_history' %}">My Orders</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<!-- PRODUCT DETAILS -->
+<section class="product-detail container">
+    <div class="left">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    </div>
+    <div class="right">
+        <h1>{{ product.name }}</h1>
+        <p class="price">Ksh {{ product.price }}</p>
+        <p>{{ product.description }}</p>
+
+        <form action="{% url 'add_to_cart' product.id %}" method="post">
+            {% csrf_token %}
+            <div class="qty">
+                <label for="quantity">Quantity:</label>
+                <input type="number" name="quantity" id="quantity" value="1" min="1">
+            </div>
+            <button type="submit" class="submit">Add to Cart</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" style="text-align:center; padding:24px; margin-top:40px;">
+    &copy; 2025 Bella Electronics
+</footer>
+
+</body>
+</html>

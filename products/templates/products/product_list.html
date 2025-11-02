@@ -1,0 +1,25 @@
+
+{% extends 'products/base.html' %}
+{% block content %}
+<h2>Available Products</h2>
+
+<div class="product-list">
+  {% for product in products %}
+    <div class="product-detail">
+      <div class="left">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+      </div>
+      <div class="right">
+        <h3>{{ product.name }}</h3>
+        <p class="price">Ksh {{ product.price }}</p>
+        <p>{{ product.description }}</p>
+        <a class="btn" href="{% url 'add_to_cart' product.id %}">Add to cart</a>
+      </div>
+    </div>
+  {% empty %}
+    <p>No products available.</p>
+  {% endfor %}
+</div>
+{% endblock %}
