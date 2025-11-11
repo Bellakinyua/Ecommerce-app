@@ -7,7 +7,7 @@
     <title>{{ product.name }} | Bella Electronics</title>
     <link rel="stylesheet" href="{% static 'products/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'products/css/home.css' %}">
-    <style>
+    <style></style>
       
 </head>
 <body>
@@ -40,8 +40,16 @@
         <h1>{{ product.name }}</h1>
         <p class="price">Ksh {{ product.price }}</p>
         <p>{{ product.description }}</p>
+    </div>
+    <div class="left">
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    {% else %}
+        <img src="{% static 'products/images/default-product.jpg' %}" alt="No image available">
+    {% endif %}
+    </div>
 
-        <form action="{% url 'add_to_cart' product.id %}" method="post">
+        <form action="{% url 'add_to_cart' product.id%}" method="post">
             {% csrf_token %}
             <div class="qty">
                 <label for="quantity">Quantity:</label>

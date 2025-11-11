@@ -58,6 +58,11 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     reference = models.CharField(max_length=200, blank=True, null=True)
 
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    paystack_reference = models.CharField(max_length=255, blank=True, null=True)
+    payment_channel = models.CharField(max_length=50, blank=True, null=True)  
+    payment_status = models.CharField(max_length=50, default='pending')
+
     def _str_(self):
         return f"Order #{self.id} - {self.status}"
 

@@ -1,10 +1,5 @@
-
 {% extends 'products/base.html' %}
-{% load static %}
 {% block content %}
-<head>
-  <link rel="stylesheet" href="{% static 'products/css/cart.css' %}">
-</head>
 <div class="check">
       <h2>Your Cart</h2>
       <form method="post" action="{% url 'update_cart' %}">{% csrf_token %}
@@ -29,7 +24,7 @@
 
       {% if items %}
       <form method="post" action="{% url 'checkout' %}">{% csrf_token %}
-        
+        <!-- Simple payment choice -->
         <label>Payment method:
           <select name="payment_method">
             <option value="paystack">Paystack</option>
@@ -42,6 +37,4 @@
       {% else %}
       <p>Your cart is empty.</p>
       {% endif %}
-      {% endblock %}
-
-      
+  {% endblock %}

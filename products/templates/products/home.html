@@ -64,7 +64,7 @@
 
             <h3 style="margin:8px 0 4px; font-size:1rem;">{{ product.name }}</h3>
             <p class="price" style="color:blue; font-weight:700;">Ksh {{ product.price }}</p>
-            <a href="{% url 'product_detail' product.slug %}" class="btn" style="background:orange; color:#000; padding:6px 10px; border-radius:6px; text-align:center; text-decoration:none;">View Details</a>
+            <a href="{% url 'product_detail' product.slug%}" class="btn" style="background:orange; color:#000; padding:6px 10px; border-radius:6px; text-align:center; text-decoration:none;">View Details</a>
         </div>
         {% endfor %}
     </div>
